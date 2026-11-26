@@ -64,58 +64,56 @@
             <!-- 사이드 옵션 -->
             <section class="side">
                 <h3 class="side-title">사이드</h3>
-                <div class="option-slider">
-                    <ul class="option-grid">
-                        <li>
-                            <label>
-                                <input type="checkbox" class="option" data-price="3000">
-                                <span class="thumb"><img src="img/side_01.jpg" alt=""></span>
-                                <span class="opt-name">야채 튀김 모듬</span>
-                                <span class="opt-price">+ 3000원</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" class="option" data-price="1000">
-                                <span class="thumb"><img src="img/side_02.jpg" alt=""></span>
-                                <span class="opt-name">어묵 튀김 (3p)</span>
-                                <span class="opt-price">+ 1000원</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" class="option" data-price="1500">
-                                <span class="thumb"><img src="img/side_03.jpg" alt=""></span>
-                                <span class="opt-name">만두 튀김 (2p)</span>
-                                <span class="opt-price">+ 1500원</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" class="option" data-price="3000">
-                                <span class="thumb"><img src="img/side_04.jpg" alt=""></span>
-                                <span class="opt-name">야채 튀김 모듬</span>
-                                <span class="opt-price">+ 3000원</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" class="option" data-price="3000">
-                                <span class="thumb"><img src="img/side_05.jpg" alt=""></span>
-                                <span class="opt-name">야채 튀김 모듬</span>
-                                <span class="opt-price">+ 3000원</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" class="option" data-price="3000">
-                                <span class="thumb"><img src="img/side_06.jpg" alt=""></span>
-                                <span class="opt-name">야채 튀김 모듬</span>
-                                <span class="opt-price">+ 3000원</span>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="option-grid">
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_01.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="1000">
+                            <span class="thumb"><img src="img/side_02.jpg" alt=""></span>
+                            <span class="opt-name">어묵 튀김 (3p)</span>
+                            <span class="opt-price">+ 1000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="1500">
+                            <span class="thumb"><img src="img/side_03.jpg" alt=""></span>
+                            <span class="opt-name">만두 튀김 (2p)</span>
+                            <span class="opt-price">+ 1500원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_04.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_05.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_06.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                </ul>
             </section>
         </main>
 
@@ -220,68 +218,6 @@
             if (qty > 1) qty--; // 1개 아래로는 안 내려감
             updatePrice();
         });
-
-        // ===== 사이드 옵션 슬라이드 (손가락으로 끌어서 넘기기) =====
-        const optSlider = document.querySelector('.option-slider');
-        const optTrack = optSlider.querySelector('.option-grid');
-        const optItems = optTrack.querySelectorAll('li');
-        const VISIBLE = 3; // 한 화면에 보이는 옵션 개수
-
-        let optCurrent = 0;    // 맨 왼쪽에 보이는 옵션 번호
-        let optStartX = 0;
-        let optMoveX = 0;
-        let optDown = false;
-        let optDrag = false;   // 끌었는지 (끌었으면 옵션 선택 안 되게)
-
-        // 1칸 이동 거리 = 옵션 너비 + 간격
-        function optGap() {
-            return optItems[1].offsetLeft - optItems[0].offsetLeft;
-        }
-
-        function optGoTo(index) {
-            const max = optItems.length - VISIBLE; // 마지막 옵션이 오른쪽 끝에 오면 멈춤
-            optCurrent = Math.max(0, Math.min(index, max));
-            optTrack.style.transition = 'transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)';
-            optTrack.style.transform = `translateX(${-optCurrent * optGap()}px)`;
-        }
-
-        optSlider.addEventListener('pointerdown', (e) => {
-            optDown = true;
-            optDrag = false;
-            optStartX = e.clientX;
-            optMoveX = 0;
-            optTrack.style.transition = 'none'; // 끄는 동안 손가락 바로 따라오게
-        });
-
-        optSlider.addEventListener('pointermove', (e) => {
-            if (!optDown) return;
-            optMoveX = e.clientX - optStartX;
-            if (Math.abs(optMoveX) > 5) optDrag = true;
-            optTrack.style.transform = `translateX(${-optCurrent * optGap() + optMoveX}px)`;
-        });
-
-        // 손을 떼면 끈 거리만큼 칸 수를 계산해서 이동 (짧게 끌면 1칸)
-        function optEnd() {
-            if (!optDown) return;
-            optDown = false;
-            let step = Math.round(-optMoveX / optGap());
-            if (step === 0 && optMoveX < -40) step = 1;
-            if (step === 0 && optMoveX > 40) step = -1;
-            optGoTo(optCurrent + step);
-        }
-
-        optSlider.addEventListener('pointerup', optEnd);
-        optSlider.addEventListener('pointercancel', optEnd);
-        optSlider.addEventListener('pointerleave', optEnd);
-
-        // 끌었을 때는 옵션이 체크되지 않게 (그냥 눌렀을 때만 체크)
-        optTrack.querySelectorAll('label').forEach((label) => {
-            label.addEventListener('click', (e) => {
-                if (optDrag) e.preventDefault();
-            });
-        });
-
-        window.addEventListener('resize', () => optGoTo(optCurrent));
     </script>
 </body>
 </html>

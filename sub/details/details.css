@@ -70,27 +70,11 @@
     font-weight: 700;
 }
 
-/* 슬라이드 보이는 영역 */
-.option-slider {
-    margin-top: 16px;
-    overflow: hidden;
-    touch-action: pan-y; /* 세로 스크롤은 그대로, 가로는 슬라이드로 */
-    user-select: none;
-}
-
-/* 옵션 6개를 한 줄로, 한 화면에 3개씩 */
 .option-grid {
-    display: flex;
-    gap: 16px;
-}
-
-.option-grid li {
-    flex: 0 0 calc((100% - 32px) / 3);
-}
-
-.option-grid img {
-    -webkit-user-drag: none;
-    pointer-events: none;
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 16px;
 }
 
 .option-grid label {

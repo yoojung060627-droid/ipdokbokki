@@ -92,10 +92,34 @@
     border-color: var(--red);
 }
 
-/* ===== 메뉴 리스트 ===== */
-.menu-list-items {
+/* ===== 메뉴 리스트 슬라이드 ===== */
+.list-slider {
     margin-top: 20px;
+    overflow: hidden;
+    touch-action: pan-y; /* 세로 스크롤은 그대로, 가로는 슬라이드로 */
+    user-select: none;
 }
+
+/* 5묶음이 한 줄로 서서 transform으로 움직임 */
+.list-track {
+    display: flex;
+    gap: 20px;
+}
+
+.list-page {
+    flex: 0 0 100%;
+}
+
+.list-slider a,
+.list-slider img {
+    -webkit-user-drag: none;
+}
+
+.list-slider img {
+    pointer-events: none;
+}
+
+/* ===== 메뉴 리스트 ===== */
 
 .menu-list-items li + li {
     margin-top: 12px;
