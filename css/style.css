@@ -1,0 +1,407 @@
+@charset "UTF-8";
+
+/* ===== 색상 변수 ===== */
+:root {
+    --red: #E8452E;      /* Spicy Red : 메인 컬러, 로고, 주요 버튼 */
+    --orange: #FF9F43;   /* Hot Orange : 포인트 컬러, 강조 요소 */
+    --beige: #FFF3E5;    /* Cream Beige : 앱 배경, 카드 배경 */
+    --brown: #38231F;    /* Dark Brown : 제목, 본문 텍스트 */
+    --line: #e5e5e5;     /* 구분선 */
+    --sub-text: #8a7b78; /* 보조 텍스트 */
+}
+
+/* ===== 기본 초기화 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--brown);
+    background: #fff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font-family: inherit;
+    color: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+input, select {
+    font-family: inherit;
+    color: inherit;
+}
+
+/* ===== 최대 가로값 500px ===== */
+.wrap {
+    position: relative;
+    max-width: 500px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: #fff;
+}
+
+/* ===== 헤더 ===== */
+.header {
+    width: 100%;
+    height: 60px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 24px; /* 로고 이미지 들어오면 크기 조정 */
+}
+
+.header .menu-btn {
+    display: flex;
+    align-items: center;
+}
+
+.header .menu-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ===== 햄버거 메뉴 ===== */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 100;
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    transform: translateX(-50%);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.side-menu .dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(56, 35, 31, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.side-menu .menu-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100%;
+    padding: 0 20px;
+    background: #fff;
+    transform: translateX(100%);
+    transition: transform 0.3s;
+}
+
+.side-menu.open {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.side-menu.open .dim {
+    opacity: 1;
+}
+
+.side-menu.open .menu-panel {
+    transform: translateX(0);
+}
+
+.menu-panel .menu-top {
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-panel .menu-close svg {
+    width: 24px;
+    height: 24px;
+}
+
+.menu-panel .menu-list li a {
+    display: block;
+    padding: 18px 0;
+    font-size: 18px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+}
+
+.menu-panel .menu-list li a:hover {
+    color: var(--red);
+}
+
+/* 메뉴 열렸을 때 뒤 화면 스크롤 막기 */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* ===== 공통 섹션 제목 ===== */
+.sec-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* ===== 메인 : 비주얼 ===== */
+.main-visual {
+    width: 100%;
+    height: 450px;
+    background: var(--beige);
+}
+
+.main-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== 메인 : 주문 버튼 ===== */
+.order-btns {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-btns .btn {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.order-btns .btn-delivery {
+    width: 100%;
+    color: #fff;
+    background: var(--red);
+}
+
+.order-btns .btn-sub {
+    width: calc(50% - 5px);
+    color: var(--red);
+    background: var(--beige);
+}
+
+/* ===== 메인 : 추천 메뉴 ===== */
+.recommend {
+    padding: 40px 0;
+    background: var(--beige);
+}
+
+.recommend .dots {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.recommend .dots button {
+    width: 40px;
+    height: 12px;
+    border-radius: 6px;
+    background: #f0d9c2;
+    transition: background 0.3s;
+}
+
+.recommend .dots button.active {
+    background: var(--orange);
+}
+
+.recommend-slider {
+    margin-top: 30px;
+    padding: 0 15%;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.recommend-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.recommend-slider .slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+}
+
+.recommend-slider .slide a {
+    display: block;
+    padding: 40px 20px 0;
+    text-align: center;
+    color: #fff;
+    background: var(--red);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.recommend-slider .slide .best {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--beige);
+}
+
+.recommend-slider .slide .name {
+    margin-top: 4px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.recommend-slider .slide .thumb {
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    margin: 30px auto 0;
+    background: var(--brown);
+}
+
+.recommend-slider .slide .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== 메인 : 메뉴 ===== */
+.menu-sec {
+    padding: 40px 20px 60px;
+}
+
+.menu-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+}
+
+.menu-grid .thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1.3;
+    background: var(--beige);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.menu-grid .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-grid .name {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ===== 메인 : 이벤트 ===== */
+.event {
+    padding: 0 20px 80px;
+}
+
+.event .desc {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--sub-text);
+}
+
+.tab-menu {
+    margin-top: 16px;
+    display: flex;
+    border-bottom: 1px solid var(--line);
+}
+
+.tab-menu button {
+    flex: 1;
+    height: 44px;
+    font-size: 14px;
+    color: var(--sub-text);
+}
+
+.tab-menu button.active {
+    font-weight: 700;
+    color: var(--brown);
+    box-shadow: inset 0 -2px 0 var(--red);
+}
+
+.tab-panel {
+    display: none;
+    padding-top: 20px;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.event-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.event-card .thumb {
+    height: 200px;
+    background: var(--beige);
+}
+
+.event-card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-card .info {
+    padding: 16px;
+}
+
+.event-card .tag {
+    font-size: 13px;
+    color: var(--red);
+}
+
+.event-card .text {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.event-card .date {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--sub-text);
+}
+
+.empty-text {
+    padding: 40px 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--sub-text);
+}

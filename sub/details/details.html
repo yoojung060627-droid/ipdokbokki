@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세 | 입덕볶이</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="details.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 헤더 -->
+        <header class="header">
+            <h1 class="logo">
+                <a href="../../index.html">
+                    <img src="../../img/logo.png" alt="LOGO">
+                </a>
+            </h1>
+            <button type="button" class="menu-btn" aria-label="메뉴 열기">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- 햄버거 메뉴 -->
+        <nav class="side-menu">
+            <div class="dim"></div>
+            <div class="menu-panel">
+                <div class="menu-top">
+                    <button type="button" class="menu-close" aria-label="메뉴 닫기">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <ul class="menu-list">
+                    <li><a href="../lists/lists.html">메뉴</a></li>
+                    <li><a href="../blend/blend.html">브랜드 소개</a></li>
+                    <li><a href="#">매장찾기</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">회원가입/로그인</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="details">
+            <!-- 상품 정보 -->
+            <section class="product">
+                <div class="product-img"><img src="img/detail_01.jpg" alt="입덕볶이 시그니처"></div>
+                <h2 class="name">입덕볶이 시그니처</h2>
+                <p class="sub">매운 떡볶이 1인</p>
+                <p class="desc">입덕볶이만의 소스로 조리하여 더 맛있게 매운<br>시그니처 매운 떡볶이</p>
+                <p class="notice">
+                    <i data-lucide="info"></i>
+                    원산지 정보 / 영양 정보 / 알레르기 유발 물질
+                </p>
+                <div class="price-row">
+                    <span>가격</span>
+                    <strong>16,800원</strong>
+                </div>
+            </section>
+
+            <!-- 사이드 옵션 -->
+            <section class="side">
+                <h3 class="side-title">사이드</h3>
+                <ul class="option-grid">
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_01.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="1000">
+                            <span class="thumb"><img src="img/side_02.jpg" alt=""></span>
+                            <span class="opt-name">어묵 튀김 (3p)</span>
+                            <span class="opt-price">+ 1000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="1500">
+                            <span class="thumb"><img src="img/side_03.jpg" alt=""></span>
+                            <span class="opt-name">만두 튀김 (2p)</span>
+                            <span class="opt-price">+ 1500원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_04.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_05.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="option" data-price="3000">
+                            <span class="thumb"><img src="img/side_06.jpg" alt=""></span>
+                            <span class="opt-name">야채 튀김 모듬</span>
+                            <span class="opt-price">+ 3000원</span>
+                        </label>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <!-- 하단 주문 바 -->
+        <div class="order-bar" data-base-price="16800">
+            <div class="order-info">
+                <div class="row">
+                    <p class="order-name">입덕볶이 시그니처 매운떡볶이</p>
+                    <p class="order-price">16,800원</p>
+                </div>
+                <div class="row">
+                    <div class="qty">
+                        <button type="button" class="qty-minus" aria-label="수량 빼기"><i data-lucide="minus"></i></button>
+                        <span class="qty-num">1</span>
+                        <button type="button" class="qty-plus" aria-label="수량 더하기"><i data-lucide="plus"></i></button>
+                    </div>
+                    <p class="total">총 <strong class="total-price">16,800원</strong></p>
+                </div>
+            </div>
+            <div class="order-btns-bottom">
+                <a href="../payment/payment.html" class="btn-cart">장바구니</a>
+                <a href="../payment/payment.html" class="btn-order">바로 주문</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- lucide 아이콘 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 아이콘 그리기
+        lucide.createIcons();
+
+        // ===== 햄버거 메뉴 =====
+        const sideMenu = document.querySelector('.side-menu');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+
+        document.querySelector('.menu-btn').addEventListener('click', openMenu);
+        document.querySelector('.menu-close').addEventListener('click', closeMenu);
+        sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
+
+        // ===== 옵션 선택 + 수량 + 금액 계산 =====
+        const orderBar = document.querySelector('.order-bar');
+        const basePrice = Number(orderBar.dataset.basePrice); // 기본 가격 16,800
+        const options = document.querySelectorAll('.option');
+        const qtyNum = document.querySelector('.qty-num');
+        const orderPrice = document.querySelector('.order-price');
+        const totalPrice = document.querySelector('.total-price');
+        let qty = 1;
+
+        // 숫자를 "16,800원" 형태로
+        function won(num) {
+            return num.toLocaleString('ko-KR') + '원';
+        }
+
+        function updatePrice() {
+            let optionSum = 0;
+            options.forEach((opt) => {
+                if (opt.checked) optionSum += Number(opt.dataset.price);
+            });
+            const onePrice = basePrice + optionSum; // 1개 가격(옵션 포함)
+            orderPrice.textContent = won(onePrice);
+            totalPrice.textContent = won(onePrice * qty);
+            qtyNum.textContent = qty;
+        }
+
+        options.forEach((opt) => opt.addEventListener('change', updatePrice));
+
+        document.querySelector('.qty-plus').addEventListener('click', () => {
+            qty++;
+            updatePrice();
+        });
+        document.querySelector('.qty-minus').addEventListener('click', () => {
+            if (qty > 1) qty--; // 1개 아래로는 안 내려감
+            updatePrice();
+        });
+    </script>
+</body>
+</html>

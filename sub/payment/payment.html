@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문/결제 | 입덕볶이</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 헤더 -->
+        <header class="header">
+            <h1 class="logo">
+                <a href="../../index.html">
+                    <img src="../../img/logo.png" alt="LOGO">
+                </a>
+            </h1>
+            <button type="button" class="menu-btn" aria-label="메뉴 열기">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- 햄버거 메뉴 -->
+        <nav class="side-menu">
+            <div class="dim"></div>
+            <div class="menu-panel">
+                <div class="menu-top">
+                    <button type="button" class="menu-close" aria-label="메뉴 닫기">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <ul class="menu-list">
+                    <li><a href="../lists/lists.html">메뉴</a></li>
+                    <li><a href="../blend/blend.html">브랜드 소개</a></li>
+                    <li><a href="#">매장찾기</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">회원가입/로그인</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="payment">
+            <!-- 배달 / 포장 탭 -->
+            <div class="order-tab">
+                <button type="button" class="active" data-type="delivery">배달 주문</button>
+                <button type="button" data-type="pickup">방문 포장</button>
+            </div>
+
+            <!-- 배달 주소 (방문 포장일 땐 숨김) -->
+            <section class="box address-box">
+                <p class="label">배달 주소</p>
+                <p class="address">서울 마포구 양화로 45 (서교동, 메세나폴리스)<br>101-1005호</p>
+                <input type="text" class="detail-input" placeholder="상세 주소를 적어주세요.">
+                <button type="button" class="btn-line">주소 변경</button>
+            </section>
+
+            <!-- 수령인 -->
+            <section class="box">
+                <p class="label">수령인</p>
+                <div class="input-row">
+                    <input type="text" value="유정">
+                    <button type="button" class="btn-text">변경</button>
+                </div>
+            </section>
+
+            <!-- 휴대폰 번호 -->
+            <section class="box">
+                <p class="label">휴대폰번호</p>
+                <div class="input-row">
+                    <input type="tel" value="010 - 0000 - 0000">
+                    <button type="button" class="btn-text">변경</button>
+                </div>
+            </section>
+
+            <!-- 주문 상품 -->
+            <section class="cart">
+                <h2 class="cart-title">주문 상품</h2>
+                <ul class="cart-list">
+                    <li class="cart-item" data-price="18300">
+                        <div class="thumb"><img src="img/cart_01.jpg" alt=""></div>
+                        <div class="cart-info">
+                            <p class="cart-name">고양이와 스프 콜라보 입덕볶이</p>
+                            <div class="qty">
+                                <button type="button" class="qty-minus" aria-label="수량 빼기"><i data-lucide="minus"></i></button>
+                                <span class="qty-num">1</span>
+                                <button type="button" class="qty-plus" aria-label="수량 더하기"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-delete" aria-label="삭제"><i data-lucide="x"></i></button>
+                        <p class="item-price">18,300원</p>
+                    </li>
+                    <li class="cart-item" data-price="18300">
+                        <div class="thumb"><img src="img/cart_02.jpg" alt=""></div>
+                        <div class="cart-info">
+                            <p class="cart-name">고양이와 스프 콜라보 입덕볶이</p>
+                            <div class="qty">
+                                <button type="button" class="qty-minus" aria-label="수량 빼기"><i data-lucide="minus"></i></button>
+                                <span class="qty-num">1</span>
+                                <button type="button" class="qty-plus" aria-label="수량 더하기"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-delete" aria-label="삭제"><i data-lucide="x"></i></button>
+                        <p class="item-price">18,300원</p>
+                    </li>
+                    <li class="cart-item" data-price="18300">
+                        <div class="thumb"><img src="img/cart_03.jpg" alt=""></div>
+                        <div class="cart-info">
+                            <p class="cart-name">고양이와 스프 콜라보 입덕볶이</p>
+                            <div class="qty">
+                                <button type="button" class="qty-minus" aria-label="수량 빼기"><i data-lucide="minus"></i></button>
+                                <span class="qty-num">1</span>
+                                <button type="button" class="qty-plus" aria-label="수량 더하기"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-delete" aria-label="삭제"><i data-lucide="x"></i></button>
+                        <p class="item-price">18,300원</p>
+                    </li>
+                    <li class="cart-item" data-price="18300">
+                        <div class="thumb"><img src="img/cart_04.jpg" alt=""></div>
+                        <div class="cart-info">
+                            <p class="cart-name">고양이와 스프 콜라보 입덕볶이</p>
+                            <div class="qty">
+                                <button type="button" class="qty-minus" aria-label="수량 빼기"><i data-lucide="minus"></i></button>
+                                <span class="qty-num">1</span>
+                                <button type="button" class="qty-plus" aria-label="수량 더하기"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-delete" aria-label="삭제"><i data-lucide="x"></i></button>
+                        <p class="item-price">18,300원</p>
+                    </li>
+                </ul>
+                <p class="cart-total">총 상품 금액 <strong class="cart-sum">0원</strong></p>
+            </section>
+
+            <!-- 결제 수단 -->
+            <section class="pay-method">
+                <h2 class="sec-label">결제 수단</h2>
+                <div class="method-box">
+                    <ul class="method-list">
+                        <li><label><input type="radio" name="pay" value="card" checked> 신용/체크카드</label></li>
+                        <li><label><input type="radio" name="pay" value="bank"> 계좌 이체</label></li>
+                        <li><label><input type="radio" name="pay" value="kakao"> 카카오 페이</label></li>
+                        <li><label><input type="radio" name="pay" value="etc"> 기타 결제</label></li>
+                        <li><label><input type="radio" name="pay" value="toss"> 토스 페이</label></li>
+                    </ul>
+                    <div class="method-detail">
+                        <!-- 기타 결제 선택 시 사용 -->
+                        <div class="etc-chips">
+                            <button type="button" disabled>무통장</button>
+                            <button type="button" disabled>휴대폰</button>
+                            <button type="button" disabled>편의점</button>
+                        </div>
+                        <!-- 계좌 이체 선택 시 사용 -->
+                        <select class="bank-select" disabled>
+                            <option>은행 선택</option>
+                            <option>국민은행</option>
+                            <option>신한은행</option>
+                            <option>우리은행</option>
+                            <option>하나은행</option>
+                            <option>카카오뱅크</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 결제 금액 -->
+            <section class="pay-sum">
+                <h2 class="sec-label">결제 금액</h2>
+                <div class="sum-box">
+                    <dl>
+                        <dt>상품 금액</dt>
+                        <dd class="sum-product">0원</dd>
+                    </dl>
+                    <dl>
+                        <dt>배달팁</dt>
+                        <dd class="sum-delivery">1,000원</dd>
+                    </dl>
+                    <dl class="sum-total">
+                        <dt>총 결제 금액</dt>
+                        <dd class="sum-final">0원</dd>
+                    </dl>
+                </div>
+            </section>
+
+            <a href="../payment_finish/payment_finish.html" class="btn-pay">결제하기</a>
+        </main>
+
+    </div>
+
+    <!-- lucide 아이콘 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 아이콘 그리기
+        lucide.createIcons();
+
+        // ===== 햄버거 메뉴 =====
+        const sideMenu = document.querySelector('.side-menu');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+
+        document.querySelector('.menu-btn').addEventListener('click', openMenu);
+        document.querySelector('.menu-close').addEventListener('click', closeMenu);
+        sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
+
+        // 숫자를 "18,300원" 형태로
+        function won(num) {
+            return num.toLocaleString('ko-KR') + '원';
+        }
+
+        // ===== 금액 계산 =====
+        const DELIVERY_FEE = 1000;
+        let deliveryFee = DELIVERY_FEE;
+
+        function updateTotal() {
+            let sum = 0;
+            document.querySelectorAll('.cart-item').forEach((item) => {
+                const price = Number(item.dataset.price);
+                const qty = Number(item.querySelector('.qty-num').textContent);
+                item.querySelector('.item-price').textContent = won(price * qty);
+                sum += price * qty;
+            });
+
+            document.querySelector('.cart-sum').textContent = won(sum);
+            document.querySelector('.sum-product').textContent = won(sum);
+            document.querySelector('.sum-delivery').textContent = won(deliveryFee);
+            document.querySelector('.sum-final').textContent = won(sum + deliveryFee);
+        }
+
+        // ===== 주문 상품 : 수량 +/- , 삭제 =====
+        document.querySelectorAll('.cart-item').forEach((item) => {
+            const qtyNum = item.querySelector('.qty-num');
+
+            item.querySelector('.qty-plus').addEventListener('click', () => {
+                qtyNum.textContent = Number(qtyNum.textContent) + 1;
+                updateTotal();
+            });
+            item.querySelector('.qty-minus').addEventListener('click', () => {
+                const qty = Number(qtyNum.textContent);
+                if (qty > 1) qtyNum.textContent = qty - 1; // 1개 아래로는 안 내려감
+                updateTotal();
+            });
+            item.querySelector('.btn-delete').addEventListener('click', () => {
+                item.remove();
+                updateTotal();
+            });
+        });
+
+        // ===== 배달 주문 / 방문 포장 탭 =====
+        const orderTabs = document.querySelectorAll('.order-tab button');
+        const addressBox = document.querySelector('.address-box');
+
+        orderTabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                orderTabs.forEach((t) => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                if (tab.dataset.type === 'pickup') {
+                    addressBox.style.display = 'none'; // 포장은 배달 주소 필요 없음
+                    deliveryFee = 0;
+                } else {
+                    addressBox.style.display = '';
+                    deliveryFee = DELIVERY_FEE;
+                }
+                updateTotal();
+            });
+        });
+
+        // ===== 결제 수단 =====
+        const etcChips = document.querySelectorAll('.etc-chips button');
+        const bankSelect = document.querySelector('.bank-select');
+
+        document.querySelectorAll('input[name="pay"]').forEach((radio) => {
+            radio.addEventListener('change', () => {
+                const value = radio.value;
+                // 기타 결제일 때만 무통장/휴대폰/편의점 사용
+                etcChips.forEach((chip) => {
+                    chip.disabled = value !== 'etc';
+                    chip.classList.remove('active');
+                });
+                // 계좌 이체일 때만 은행 선택 사용
+                bankSelect.disabled = value !== 'bank';
+            });
+        });
+
+        etcChips.forEach((chip) => {
+            chip.addEventListener('click', () => {
+                etcChips.forEach((c) => c.classList.remove('active'));
+                chip.classList.add('active');
+            });
+        });
+
+        // 처음 들어왔을 때 금액 계산
+        updateTotal();
+    </script>
+</body>
+</html>

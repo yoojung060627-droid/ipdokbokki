@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문 완료 | 입덕볶이</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="payment_finish.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 헤더 -->
+        <header class="header">
+            <h1 class="logo">
+                <a href="../../index.html">
+                    <img src="../../img/logo.png" alt="LOGO">
+                </a>
+            </h1>
+            <button type="button" class="menu-btn" aria-label="메뉴 열기">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- 햄버거 메뉴 -->
+        <nav class="side-menu">
+            <div class="dim"></div>
+            <div class="menu-panel">
+                <div class="menu-top">
+                    <button type="button" class="menu-close" aria-label="메뉴 닫기">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <ul class="menu-list">
+                    <li><a href="../lists/lists.html">메뉴</a></li>
+                    <li><a href="../blend/blend.html">브랜드 소개</a></li>
+                    <li><a href="#">매장찾기</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">회원가입/로그인</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="finish">
+            <div class="finish-top">
+                <h2 class="finish-title">주문 완료</h2>
+                <a href="../../index.html" class="btn-close" aria-label="닫기"><i data-lucide="x"></i></a>
+            </div>
+
+            <div class="finish-img"><img src="img/finish.png" alt="주문 완료 이미지"></div>
+
+            <p class="finish-msg">결제가 완료되었습니다.</p>
+            <p class="finish-sub">가게에서 열심히 조리중입니다! 조금만 기다려주세요!</p>
+
+            <dl class="finish-info">
+                <dt>가게명</dt><dd>입덕볶이 광화문점</dd>
+                <dt>주문금액</dt><dd>68,400원</dd>
+                <dt>주문일시</dt><dd>2026.11.25</dd>
+            </dl>
+
+            <p class="order-no">주문 번호 <strong>010043253432</strong></p>
+
+            <div class="delivery-time">
+                <span>예상 배달 시간</span>
+                <strong>25~35분</strong>
+            </div>
+
+            <a href="../../index.html" class="btn-confirm">확인</a>
+        </main>
+
+    </div>
+
+    <!-- lucide 아이콘 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 아이콘 그리기
+        lucide.createIcons();
+
+        // ===== 햄버거 메뉴 =====
+        const sideMenu = document.querySelector('.side-menu');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+
+        document.querySelector('.menu-btn').addEventListener('click', openMenu);
+        document.querySelector('.menu-close').addEventListener('click', closeMenu);
+        sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
+    </script>
+</body>
+</html>

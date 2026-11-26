@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입덕볶이</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 헤더 -->
+        <header class="header">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="LOGO">
+                </a>
+            </h1>
+            <button type="button" class="menu-btn" aria-label="메뉴 열기">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- 햄버거 메뉴 -->
+        <nav class="side-menu">
+            <div class="dim"></div>
+            <div class="menu-panel">
+                <div class="menu-top">
+                    <button type="button" class="menu-close" aria-label="메뉴 닫기">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <ul class="menu-list">
+                    <li><a href="sub/lists/lists.html">메뉴</a></li>
+                    <li><a href="sub/blend/blend.html">브랜드 소개</a></li>
+                    <li><a href="#">매장찾기</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">회원가입/로그인</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <!-- 메인 비주얼 -->
+            <section class="main-visual">
+                <img src="img/main_visual.jpg" alt="입덕볶이 메인 이미지">
+            </section>
+
+            <!-- 주문 버튼 -->
+            <section class="order-btns">
+                <a href="sub/lists/lists.html" class="btn btn-delivery">배달 주문하기</a>
+                <button type="button" class="btn btn-sub">전화 주문</button>
+                <button type="button" class="btn btn-sub">쿠폰 사용</button>
+            </section>
+
+            <!-- 추천 메뉴 -->
+            <section class="recommend">
+                <h2 class="sec-title">추천 메뉴</h2>
+                <div class="dots">
+                    <button type="button" class="active" aria-label="1번 슬라이드"></button>
+                    <button type="button" aria-label="2번 슬라이드"></button>
+                    <button type="button" aria-label="3번 슬라이드"></button>
+                </div>
+                <ul class="recommend-slider">
+                    <li class="slide">
+                        <a href="sub/details/details.html">
+                            <p class="best">BEST 1</p>
+                            <p class="name">떡볶이 타이틀 작성</p>
+                            <div class="thumb"><img src="img/best_01.png" alt="BEST 1 메뉴"></div>
+                        </a>
+                    </li>
+                    <li class="slide">
+                        <a href="sub/details/details.html">
+                            <p class="best">BEST 2</p>
+                            <p class="name">떡볶이 타이틀 작성</p>
+                            <div class="thumb"><img src="img/best_02.png" alt="BEST 2 메뉴"></div>
+                        </a>
+                    </li>
+                    <li class="slide">
+                        <a href="sub/details/details.html">
+                            <p class="best">BEST 3</p>
+                            <p class="name">떡볶이 타이틀 작성</p>
+                            <div class="thumb"><img src="img/best_03.png" alt="BEST 3 메뉴"></div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 메뉴 -->
+            <section class="menu-sec">
+                <h2 class="sec-title">메뉴</h2>
+                <ul class="menu-grid">
+                    <li>
+                        <a href="sub/details/details.html">
+                            <div class="thumb"><img src="img/menu_01.jpg" alt="메뉴 이미지"></div>
+                            <p class="name">떡볶이 타이틀 작성</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sub/details/details.html">
+                            <div class="thumb"><img src="img/menu_02.jpg" alt="메뉴 이미지"></div>
+                            <p class="name">떡볶이 타이틀 작성</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sub/details/details.html">
+                            <div class="thumb"><img src="img/menu_03.jpg" alt="메뉴 이미지"></div>
+                            <p class="name">떡볶이 타이틀 작성</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sub/details/details.html">
+                            <div class="thumb"><img src="img/menu_04.jpg" alt="메뉴 이미지"></div>
+                            <p class="name">떡볶이 타이틀 작성</p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 이벤트 -->
+            <section class="event">
+                <h2 class="sec-title">이벤트</h2>
+                <p class="desc">귀여운 캐릭터가 떡볶이에 입덕하는 것같은 배경</p>
+
+                <div class="tab-menu">
+                    <button type="button" class="active" data-tab="ing">진행중</button>
+                    <button type="button" data-tab="end">종료</button>
+                    <button type="button" data-tab="winner">당첨자</button>
+                </div>
+
+                <div class="tab-panel active" id="ing">
+                    <div class="event-card">
+                        <div class="thumb"><img src="img/event_01.jpg" alt="이벤트 이미지"></div>
+                        <div class="info">
+                            <p class="tag">[할인중 이벤트]</p>
+                            <p class="text">배달 추가되는 입덕볶이의 이벤트 내역입니다.<br>자세한 내용은 이벤...</p>
+                            <p class="date">2026.11.23 ~ 2026.12.31</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="end">
+                    <p class="empty-text">종료된 이벤트가 없습니다.</p>
+                </div>
+                <div class="tab-panel" id="winner">
+                    <p class="empty-text">당첨자 발표가 없습니다.</p>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <!-- lucide 아이콘 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 아이콘 그리기
+        lucide.createIcons();
+
+        // ===== 햄버거 메뉴 =====
+        const sideMenu = document.querySelector('.side-menu');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+
+        document.querySelector('.menu-btn').addEventListener('click', openMenu);
+        document.querySelector('.menu-close').addEventListener('click', closeMenu);
+        sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
+
+        // ===== 추천 메뉴 슬라이드 =====
+        const slider = document.querySelector('.recommend-slider');
+        const slides = slider.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.recommend .dots button');
+
+        // 점 누르면 해당 슬라이드로 이동
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                const target = slides[i];
+                const left = target.offsetLeft - (slider.clientWidth - target.clientWidth) / 2;
+                slider.scrollTo({ left: left, behavior: 'smooth' });
+            });
+        });
+
+        // 손으로 넘기면 점도 같이 바뀜
+        slider.addEventListener('scroll', () => {
+            const slideWidth = slides[1].offsetLeft - slides[0].offsetLeft;
+            const index = Math.round(slider.scrollLeft / slideWidth);
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        });
+
+        // ===== 이벤트 탭 =====
+        const tabBtns = document.querySelectorAll('.event .tab-menu button');
+        const tabPanels = document.querySelectorAll('.event .tab-panel');
+
+        tabBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach((b) => b.classList.remove('active'));
+                tabPanels.forEach((p) => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
