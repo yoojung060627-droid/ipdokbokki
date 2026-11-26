@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+.login {
+    padding: 0 20px 60px;
+}
+
+.page-title {
+    padding: 30px 0 40px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* ===== 입력 폼 ===== */
+.login-form input {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    font-size: 15px;
+    background: var(--beige);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    outline: none;
+}
+
+.login-form input + input {
+    margin-top: 10px;
+}
+
+.login-form input:focus {
+    border-color: var(--orange);
+}
+
+/* 안내 문구 (빈 칸, 틀렸을 때) */
+.msg {
+    min-height: 20px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--red);
+}
+
+.btn-main {
+    width: 100%;
+    height: 52px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--red);
+    border-radius: 8px;
+}
+
+.join-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--sub-text);
+}
+
+.join-link a {
+    margin-left: 6px;
+    font-weight: 700;
+    color: var(--red);
+    text-decoration: underline;
+}
+
+/* ===== SNS 간편 로그인 ===== */
+.sns {
+    margin-top: 50px;
+}
+
+/* 양옆에 선이 있는 제목 */
+.sns-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--sub-text);
+}
+
+.sns-title::before,
+.sns-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+.btn-sns {
+    width: 100%;
+    height: 50px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.sns-title + .btn-sns {
+    margin-top: 20px;
+}
+
+.btn-sns svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-sns.kakao {
+    color: #191919;
+    background: #FEE500; /* 카카오 공식 색상 */
+}
+
+.btn-sns.kakao svg {
+    fill: #191919;
+}
+
+.btn-sns.naver {
+    color: #fff;
+    background: #03C75A; /* 네이버 공식 색상 */
+}
+
+.btn-sns.naver b {
+    font-size: 18px;
+    font-weight: 900;
+}

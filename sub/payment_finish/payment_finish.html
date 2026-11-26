@@ -39,7 +39,7 @@
                     <li><a href="../blend/blend.html">브랜드 소개</a></li>
                     <li><a href="#">매장찾기</a></li>
                     <li><a href="#">고객센터</a></li>
-                    <li><a href="#">회원가입/로그인</a></li>
+                    <li><a href="../login/login.html" class="menu-member">회원가입/로그인</a></li>
                 </ul>
             </div>
         </nav>
@@ -94,6 +94,26 @@
         document.querySelector('.menu-btn').addEventListener('click', openMenu);
         document.querySelector('.menu-close').addEventListener('click', closeMenu);
         sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
+
+        // ===== 로그인 상태 표시 =====
+        // 로그인 중이면 메뉴의 '회원가입/로그인'을 '○○님 · 로그아웃'으로 바꿈
+        const memberLink = document.querySelector('.menu-member');
+        const loginUserId = localStorage.getItem('ipdokLoginUser');
+
+        if (loginUserId) {
+            const allUsers = JSON.parse(localStorage.getItem('ipdokUsers') || '[]');
+            const loginUser = allUsers.find((u) => u.id === loginUserId);
+            memberLink.textContent = (loginUser ? loginUser.name : loginUserId) + '님 · 로그아웃';
+
+            // 누르면 로그아웃 후 현재 페이지 새로고침
+            memberLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm('로그아웃 하시겠습니까?')) {
+                    localStorage.removeItem('ipdokLoginUser');
+                    location.reload();
+                }
+            });
+        }
     </script>
 </body>
 </html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 | 입덕볶이</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 헤더 -->
+        <header class="header">
+            <h1 class="logo">
+                <a href="../../index.html">
+                    <img src="../../img/logo.png" alt="LOGO">
+                </a>
+            </h1>
+            <button type="button" class="menu-btn" aria-label="메뉴 열기">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- 햄버거 메뉴 -->
+        <nav class="side-menu">
+            <div class="dim"></div>
+            <div class="menu-panel">
+                <div class="menu-top">
+                    <button type="button" class="menu-close" aria-label="메뉴 닫기">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <ul class="menu-list">
+                    <li><a href="../lists/lists.html">메뉴</a></li>
+                    <li><a href="../blend/blend.html">브랜드 소개</a></li>
+                    <li><a href="#">매장찾기</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="../login/login.html" class="menu-member">회원가입/로그인</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="login">
+            <h2 class="page-title">로그인</h2>
+
+            <!-- 아이디 / 비밀번호 로그인 -->
+            <form class="login-form" novalidate>
+                <input type="text" id="loginId" placeholder="아이디" autocomplete="username">
+                <input type="password" id="loginPw" placeholder="비밀번호" autocomplete="current-password">
+                <p class="msg"></p>
+                <button type="submit" class="btn-main">로그인</button>
+            </form>
+
+            <p class="join-link">
+                아직 회원이 아니신가요? <a href="../join/join.html">회원가입</a>
+            </p>
+
+            <!-- SNS 간편 로그인 -->
+            <div class="sns">
+                <p class="sns-title"><span>SNS 간편 로그인</span></p>
+                <button type="button" class="btn-sns kakao">
+                    <i data-lucide="message-circle"></i>
+                    카카오로 시작하기
+                </button>
+                <button type="button" class="btn-sns naver">
+                    <b>N</b>
+                    네이버로 시작하기
+                </button>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- lucide 아이콘 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 아이콘 그리기
+        lucide.createIcons();
+
+        // ===== 햄버거 메뉴 =====
+        const sideMenu = document.querySelector('.side-menu');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+
+        document.querySelector('.menu-btn').addEventListener('click', openMenu);
+        document.querySelector('.menu-close').addEventListener('click', closeMenu);
+        sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
+
+        // ===== 로그인 상태 표시 =====
+        // 로그인 중이면 메뉴의 '회원가입/로그인'을 '○○님 · 로그아웃'으로 바꿈
+        const memberLink = document.querySelector('.menu-member');
+        const loginUserId = localStorage.getItem('ipdokLoginUser');
+
+        if (loginUserId) {
+            const allUsers = JSON.parse(localStorage.getItem('ipdokUsers') || '[]');
+            const loginUser = allUsers.find((u) => u.id === loginUserId);
+            memberLink.textContent = (loginUser ? loginUser.name : loginUserId) + '님 · 로그아웃';
+
+            // 누르면 로그아웃 후 현재 페이지 새로고침
+            memberLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm('로그아웃 하시겠습니까?')) {
+                    localStorage.removeItem('ipdokLoginUser');
+                    location.reload();
+                }
+            });
+        }
+
+        // ===== 로그인 =====
+        // 회원가입 때 저장한 회원 목록을 브라우저(localStorage)에서 꺼내서 확인
+        const loginForm = document.querySelector('.login-form');
+        const msg = document.querySelector('.msg');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // 페이지 새로고침 막기
+
+            const id = document.getElementById('loginId').value.trim();
+            const pw = document.getElementById('loginPw').value;
+
+            // 빈 칸 확인
+            if (!id || !pw) {
+                msg.textContent = '아이디와 비밀번호를 입력해 주세요.';
+                return;
+            }
+
+            // 저장된 회원 목록 (없으면 빈 배열)
+            const users = JSON.parse(localStorage.getItem('ipdokUsers') || '[]');
+            const user = users.find((u) => u.id === id && u.pw === pw);
+
+            if (!user) {
+                msg.textContent = '아이디 또는 비밀번호가 맞지 않습니다.';
+                return;
+            }
+
+            // 로그인 성공 : 로그인한 아이디 저장 후 메인으로
+            localStorage.setItem('ipdokLoginUser', user.id);
+            alert(user.name + '님, 환영합니다!');
+            location.href = '../../index.html';
+        });
+    </script>
+</body>
+</html>

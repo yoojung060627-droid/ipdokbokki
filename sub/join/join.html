@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 | 입덕볶이</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="join.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 헤더 -->
+        <header class="header">
+            <h1 class="logo">
+                <a href="../../index.html">
+                    <img src="../../img/logo.png" alt="LOGO">
+                </a>
+            </h1>
+            <button type="button" class="menu-btn" aria-label="메뉴 열기">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- 햄버거 메뉴 -->
+        <nav class="side-menu">
+            <div class="dim"></div>
+            <div class="menu-panel">
+                <div class="menu-top">
+                    <button type="button" class="menu-close" aria-label="메뉴 닫기">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <ul class="menu-list">
+                    <li><a href="../lists/lists.html">메뉴</a></li>
+                    <li><a href="../blend/blend.html">브랜드 소개</a></li>
+                    <li><a href="#">매장찾기</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="../login/login.html" class="menu-member">회원가입/로그인</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="join">
+            <h2 class="page-title">회원가입</h2>
+
+            <form class="join-form" novalidate>
+                <label class="field">
+                    <span>이름</span>
+                    <input type="text" id="joinName" placeholder="이름을 입력해 주세요" autocomplete="name">
+                </label>
+                <label class="field">
+                    <span>아이디</span>
+                    <input type="text" id="joinId" placeholder="아이디를 입력해 주세요" autocomplete="username">
+                </label>
+                <label class="field">
+                    <span>비밀번호</span>
+                    <input type="password" id="joinPw" placeholder="비밀번호를 입력해 주세요" autocomplete="new-password">
+                </label>
+                <label class="field">
+                    <span>비밀번호 확인</span>
+                    <input type="password" id="joinPw2" placeholder="비밀번호를 한 번 더 입력해 주세요" autocomplete="new-password">
+                </label>
+                <label class="field">
+                    <span>휴대폰 번호</span>
+                    <input type="tel" id="joinPhone" placeholder="010-0000-0000" autocomplete="tel">
+                </label>
+
+                <label class="agree">
+                    <input type="checkbox" id="joinAgree">
+                    이용약관 및 개인정보 수집에 동의합니다. (필수)
+                </label>
+
+                <p class="msg"></p>
+                <button type="submit" class="btn-main">가입하기</button>
+            </form>
+
+            <p class="login-link">
+                이미 회원이신가요? <a href="../login/login.html">로그인</a>
+            </p>
+        </main>
+
+    </div>
+
+    <!-- lucide 아이콘 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 아이콘 그리기
+        lucide.createIcons();
+
+        // ===== 햄버거 메뉴 =====
+        const sideMenu = document.querySelector('.side-menu');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+
+        document.querySelector('.menu-btn').addEventListener('click', openMenu);
+        document.querySelector('.menu-close').addEventListener('click', closeMenu);
+        sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
+
+        // ===== 로그인 상태 표시 =====
+        // 로그인 중이면 메뉴의 '회원가입/로그인'을 '○○님 · 로그아웃'으로 바꿈
+        const memberLink = document.querySelector('.menu-member');
+        const loginUserId = localStorage.getItem('ipdokLoginUser');
+
+        if (loginUserId) {
+            const allUsers = JSON.parse(localStorage.getItem('ipdokUsers') || '[]');
+            const loginUser = allUsers.find((u) => u.id === loginUserId);
+            memberLink.textContent = (loginUser ? loginUser.name : loginUserId) + '님 · 로그아웃';
+
+            // 누르면 로그아웃 후 현재 페이지 새로고침
+            memberLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm('로그아웃 하시겠습니까?')) {
+                    localStorage.removeItem('ipdokLoginUser');
+                    location.reload();
+                }
+            });
+        }
+
+        // ===== 회원가입 =====
+        // 회원 정보를 브라우저(localStorage)에 저장
+        const joinForm = document.querySelector('.join-form');
+        const msg = document.querySelector('.msg');
+
+        joinForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // 페이지 새로고침 막기
+
+            const name = document.getElementById('joinName').value.trim();
+            const id = document.getElementById('joinId').value.trim();
+            const pw = document.getElementById('joinPw').value;
+            const pw2 = document.getElementById('joinPw2').value;
+            const phone = document.getElementById('joinPhone').value.trim();
+            const agree = document.getElementById('joinAgree').checked;
+
+            // 1) 빈 칸 확인
+            if (!name || !id || !pw || !pw2 || !phone) {
+                msg.textContent = '모든 항목을 입력해 주세요.';
+                return;
+            }
+
+            // 2) 비밀번호 두 개가 같은지 확인
+            if (pw !== pw2) {
+                msg.textContent = '비밀번호가 서로 다릅니다.';
+                return;
+            }
+
+            // 3) 약관 동의 확인
+            if (!agree) {
+                msg.textContent = '약관에 동의해 주세요.';
+                return;
+            }
+
+            // 4) 이미 있는 아이디인지 확인
+            const users = JSON.parse(localStorage.getItem('ipdokUsers') || '[]');
+            if (users.some((u) => u.id === id)) {
+                msg.textContent = '이미 사용 중인 아이디입니다.';
+                return;
+            }
+
+            // 5) 저장 후 로그인 페이지로
+            users.push({ name: name, id: id, pw: pw, phone: phone });
+            localStorage.setItem('ipdokUsers', JSON.stringify(users));
+
+            alert('회원가입이 완료되었습니다. 로그인해 주세요.');
+            location.href = '../login/login.html';
+        });
+    </script>
+</body>
+</html>

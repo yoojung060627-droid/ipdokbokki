@@ -234,23 +234,39 @@ body.no-scroll {
     background: var(--orange);
 }
 
+/* 슬라이드 보이는 영역 : 양옆 15%에 이전/다음 카드가 살짝 보임 */
 .recommend-slider {
     margin-top: 30px;
-    padding: 0 15%;
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    padding: 0 15% 30px; /* 아래 30px : 내려온 카드가 잘리지 않게 */
+    overflow: hidden;
+    touch-action: pan-y; /* 세로 스크롤은 그대로, 가로는 슬라이드로 */
+    user-select: none;
 }
 
-.recommend-slider::-webkit-scrollbar {
-    display: none;
+/* 카드들이 한 줄로 서서 transform으로 움직임 */
+.slider-track {
+    display: flex;
+    gap: 16px;
 }
 
 .recommend-slider .slide {
     flex: 0 0 100%;
-    scroll-snap-align: center;
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 가운데에 온 카드만 30px 내려옴 */
+.recommend-slider .slide.active {
+    transform: translateY(30px);
+}
+
+/* 이미지를 끌 때 이미지가 따로 끌려 나오지 않게 */
+.recommend-slider a,
+.recommend-slider img {
+    -webkit-user-drag: none;
+}
+
+.recommend-slider img {
+    pointer-events: none;
 }
 
 .recommend-slider .slide a {

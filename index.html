@@ -38,7 +38,7 @@
                     <li><a href="sub/blend/blend.html">브랜드 소개</a></li>
                     <li><a href="#">매장찾기</a></li>
                     <li><a href="#">고객센터</a></li>
-                    <li><a href="#">회원가입/로그인</a></li>
+                    <li><a href="sub/login/login.html" class="menu-member">회원가입/로그인</a></li>
                 </ul>
             </div>
         </nav>
@@ -64,29 +64,31 @@
                     <button type="button" aria-label="2번 슬라이드"></button>
                     <button type="button" aria-label="3번 슬라이드"></button>
                 </div>
-                <ul class="recommend-slider">
-                    <li class="slide">
-                        <a href="sub/details/details.html">
-                            <p class="best">BEST 1</p>
-                            <p class="name">떡볶이 타이틀 작성</p>
-                            <div class="thumb"><img src="img/best_01.png" alt="BEST 1 메뉴"></div>
-                        </a>
-                    </li>
-                    <li class="slide">
-                        <a href="sub/details/details.html">
-                            <p class="best">BEST 2</p>
-                            <p class="name">떡볶이 타이틀 작성</p>
-                            <div class="thumb"><img src="img/best_02.png" alt="BEST 2 메뉴"></div>
-                        </a>
-                    </li>
-                    <li class="slide">
-                        <a href="sub/details/details.html">
-                            <p class="best">BEST 3</p>
-                            <p class="name">떡볶이 타이틀 작성</p>
-                            <div class="thumb"><img src="img/best_03.png" alt="BEST 3 메뉴"></div>
-                        </a>
-                    </li>
-                </ul>
+                <div class="recommend-slider">
+                    <ul class="slider-track">
+                        <li class="slide">
+                            <a href="sub/details/details.html">
+                                <p class="best">BEST 1</p>
+                                <p class="name">떡볶이 타이틀 작성</p>
+                                <div class="thumb"><img src="img/best_01.png" alt="BEST 1 메뉴"></div>
+                            </a>
+                        </li>
+                        <li class="slide">
+                            <a href="sub/details/details.html">
+                                <p class="best">BEST 2</p>
+                                <p class="name">떡볶이 타이틀 작성</p>
+                                <div class="thumb"><img src="img/best_02.png" alt="BEST 2 메뉴"></div>
+                            </a>
+                        </li>
+                        <li class="slide">
+                            <a href="sub/details/details.html">
+                                <p class="best">BEST 3</p>
+                                <p class="name">떡볶이 타이틀 작성</p>
+                                <div class="thumb"><img src="img/best_03.png" alt="BEST 3 메뉴"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </section>
 
             <!-- 메뉴 -->
@@ -174,26 +176,101 @@
         document.querySelector('.menu-close').addEventListener('click', closeMenu);
         sideMenu.querySelector('.dim').addEventListener('click', closeMenu);
 
-        // ===== 추천 메뉴 슬라이드 =====
+        // ===== 로그인 상태 표시 =====
+        // 로그인 중이면 메뉴의 '회원가입/로그인'을 '○○님 · 로그아웃'으로 바꿈
+        const memberLink = document.querySelector('.menu-member');
+        const loginUserId = localStorage.getItem('ipdokLoginUser');
+
+        if (loginUserId) {
+            const allUsers = JSON.parse(localStorage.getItem('ipdokUsers') || '[]');
+            const loginUser = allUsers.find((u) => u.id === loginUserId);
+            memberLink.textContent = (loginUser ? loginUser.name : loginUserId) + '님 · 로그아웃';
+
+            // 누르면 로그아웃 후 현재 페이지 새로고침
+            memberLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm('로그아웃 하시겠습니까?')) {
+                    localStorage.removeItem('ipdokLoginUser');
+                    location.reload();
+                }
+            });
+        }
+
+        // ===== 추천 메뉴 슬라이드 (손가락으로 끌어서 넘기기) =====
         const slider = document.querySelector('.recommend-slider');
-        const slides = slider.querySelectorAll('.slide');
+        const track = slider.querySelector('.slider-track');
+        const slides = track.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.recommend .dots button');
 
-        // 점 누르면 해당 슬라이드로 이동
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                const target = slides[i];
-                const left = target.offsetLeft - (slider.clientWidth - target.clientWidth) / 2;
-                slider.scrollTo({ left: left, behavior: 'smooth' });
+        let current = 0;      // 지금 보이는 슬라이드 번호
+        let startX = 0;       // 손가락을 댄 위치
+        let moveX = 0;        // 끈 거리
+        let isDown = false;   // 손가락을 대고 있는지
+        let isDrag = false;   // 실제로 옆으로 끌었는지 (그냥 누른 건지 구분)
+
+        // 슬라이드 1칸 이동 거리 = 카드 너비 + 간격
+        function slideGap() {
+            return slides[1].offsetLeft - slides[0].offsetLeft;
+        }
+
+        // 해당 번호의 슬라이드로 이동
+        function goTo(index) {
+            current = Math.max(0, Math.min(index, slides.length - 1)); // 처음/끝을 넘지 않게
+            // 0.5초 동안, 처음엔 빠르고 끝에서 천천히 멈추게
+            track.style.transition = 'transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)';
+            track.style.transform = `translateX(${-current * slideGap()}px)`;
+            // 가운데 카드에만 active → CSS에서 살짝 내려옴
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+        }
+
+        // 손가락(마우스)을 댈 때
+        slider.addEventListener('pointerdown', (e) => {
+            isDown = true;
+            isDrag = false;
+            startX = e.clientX;
+            moveX = 0;
+            track.style.transition = 'none'; // 끄는 동안은 손을 바로 따라오게
+        });
+
+        // 끄는 동안 : 손가락을 따라 카드가 움직임
+        slider.addEventListener('pointermove', (e) => {
+            if (!isDown) return;
+            moveX = e.clientX - startX;
+            if (Math.abs(moveX) > 5) isDrag = true;
+            track.style.transform = `translateX(${-current * slideGap() + moveX}px)`;
+        });
+
+        // 손을 뗄 때 : 50px 이상 끌었으면 다음/이전, 아니면 제자리
+        function endDrag() {
+            if (!isDown) return;
+            isDown = false;
+            if (moveX < -50) goTo(current + 1);
+            else if (moveX > 50) goTo(current - 1);
+            else goTo(current);
+        }
+
+        slider.addEventListener('pointerup', endDrag);
+        slider.addEventListener('pointercancel', endDrag);
+        slider.addEventListener('pointerleave', endDrag);
+
+        // 끌었을 때는 카드 링크로 이동하지 않게 (그냥 눌렀을 때만 이동)
+        track.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                if (isDrag) e.preventDefault();
             });
         });
 
-        // 손으로 넘기면 점도 같이 바뀜
-        slider.addEventListener('scroll', () => {
-            const slideWidth = slides[1].offsetLeft - slides[0].offsetLeft;
-            const index = Math.round(slider.scrollLeft / slideWidth);
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        // 점 누르면 해당 슬라이드로 이동
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => goTo(i));
         });
+
+        // 화면 크기가 바뀌면 위치 다시 맞추기
+        window.addEventListener('resize', () => goTo(current));
+
+        // 처음 들어왔을 때 첫 번째 카드를 가운데로
+        goTo(0);
 
         // ===== 이벤트 탭 =====
         const tabBtns = document.querySelectorAll('.event .tab-menu button');
